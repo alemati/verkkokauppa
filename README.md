@@ -10,7 +10,8 @@ Työn aiheena on verkkokauppa. Verkkokauppa antaa käyttäjille mahdollisuuden o
 * Myynnissä olevien tuotteiden listauksen katselu
 * Tuoteen ostaminen
 * Tuoteen poistaminen varastosta
-* Tuoteen muuttaminen 
+* Tuoteen muuttaminen
+* Ostoshistorian tarkistaminen  
   
 Extra toiminnot  
 * Ostoskori
