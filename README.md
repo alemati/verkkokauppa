@@ -1,5 +1,6 @@
 # Verkkokauppa-tsoha2019 
-Tämä sovellus tehdään Helsingin yliopiston Tietokantasovellus -kurssin yhteydessä. 
+Tämä sovellus tehdään Helsingin yliopiston Tietokantasovellus -kurssin yhteydessä.  
+[Heroku linkki](https://pacific-springs-85242.herokuapp.com/demo)
 ## Aihekuvaus 
 Työn aiheena on verkkokauppa. Verkkokauppa antaa käyttäjille mahdollisuuden ostaa ja myydä tuotteita. Verkkokaupan käyttäjät voivat myös tarkista oman ostoshistorian, lisätä omalle tilille lisää rahaa ostoksia varten. 
 ### Toimintoja
@@ -16,5 +17,4 @@ Työn aiheena on verkkokauppa. Verkkokauppa antaa käyttäjille mahdollisuuden o
 Extra toiminnot  
 * Ostoskori  
 
--------------------------------  
-[Heroku linkki hello.py -sovellukseen](https://pacific-springs-85242.herokuapp.com/demo)
+
