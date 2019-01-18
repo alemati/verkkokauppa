@@ -14,4 +14,7 @@ Työn aiheena on verkkokauppa. Verkkokauppa antaa käyttäjille mahdollisuuden o
 * Ostoshistorian tarkistaminen  
   
 Extra toiminnot  
-* Ostoskori
+* Ostoskori  
+
+-------------------------------  
+[Heroku linkki hello.py -sovellukseen](https://pacific-springs-85242.herokuapp.com/demo)
