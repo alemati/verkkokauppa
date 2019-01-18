@@ -8,7 +8,7 @@ Työn aiheena on verkkokauppa. Verkkokauppa antaa käyttäjille mahdollisuuden o
 * Saldon tarkistaminen ja rahan lisääminen  
 * Tuoteen lisäminen omaan varastoon
 * Tuoteen laittaminen myyntiin
-* Myynnissä olevien tuotteiden listauksen katselu
+* Myynnissä olevien tuotteiden katselu
 * Tuoteen ostaminen
 * Tuoteen poistaminen varastosta
 * Tuoteen muuttaminen
