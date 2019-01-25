@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Verkkokauppa</title>
+  </head>
+  
+  <body>
+    <h2>Verkkokauppa</h2>
+    <ul>
+      <li><a href="{{ url_for('product_index') }}">Listaa kaikki tuoteet</a></li>
+      <li><a href="{{ url_for('product_form') }}">Lisää tuote</a></li>
+    </ul>
+    
+    {% block body %}
+    <p>
+Content.
+    </p>
+    {% endblock %}
+  </body>
+</html>

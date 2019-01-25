@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Tuote</th>
+      <th>Myynnissä</th>
+    </tr>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.name }}</td>
+      <td>{{ product.onSale }}</td>
+      <td>
+        <form method="POST" action="{{ url_for('product_set_done', product_id=product.id) }}">
+        <input type="submit" value="Laita myyntiin!"/>
+        </form>
+      </td>
+      <td>
+          <form method="POST" action="{{ url_for('product_delete', product_id=product.id) }}">
+          <input type="submit" value="Poista tuote!"/>
+          
+          </form>
+        </td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
