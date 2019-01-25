@@ -1,8 +1,8 @@
 # Verkkokauppa-tsoha2019 
 Tämä sovellus tehdään Helsingin yliopiston Tietokantasovellus -kurssin yhteydessä.  
-[Heroku linkki](https://pacific-springs-85242.herokuapp.com)
+[Heroku linkki](https://pacific-springs-85242.herokuapp.com)  
 [User storyt](https://github.com/alemati/verkkokauppa/blob/master/documentation/UserStoryt.md)  
-[Kietokantakaavio](https://github.com/alemati/verkkokauppa/blob/master/documentation/Tietokantakaavio.md)  
+[Tietokantakaavio](https://github.com/alemati/verkkokauppa/blob/master/documentation/Tietokantakaavio.md)  
 ## Aihekuvaus 
 Työn aiheena on verkkokauppa. Verkkokauppa antaa käyttäjille mahdollisuuden ostaa ja myydä tuotteita. Verkkokaupan käyttäjät voivat myös tarkista oman ostoshistorian, lisätä omalle tilille lisää rahaa ostoksia varten. 
 ### Toimintoja
