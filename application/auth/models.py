@@ -31,3 +31,5 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+
+    
