@@ -1,6 +1,6 @@
 # Verkkokauppa-tsoha2019 
 Tämä sovellus tehdään Helsingin yliopiston Tietokantasovellus -kurssin yhteydessä.  
-[Heroku linkki](https://pacific-springs-85242.herokuapp.com/product)  
+[Heroku linkki](https://pacific-springs-85242.herokuapp.com)  
 [User storyt](https://github.com/alemati/verkkokauppa/blob/master/documentation/UserStoryt.md)  
 [Tietokantakaavio](https://github.com/alemati/verkkokauppa/blob/master/documentation/Tietokantakaavio.md)  
 ## Aihekuvaus 
