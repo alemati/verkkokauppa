@@ -16,7 +16,7 @@ def product_index():
 def product_purchasable():
     
     return render_template("product/list.html", form = ProductForm(), 
-                                products = Product.query.filter_by(onSale=True).all())
+                                products = Product.query.all())
 
 
 @app.route("/product/new/")

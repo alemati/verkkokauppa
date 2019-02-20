@@ -14,8 +14,9 @@
     {% if current_user.is_authenticated %}
     {% if current_user.id == product.account_id %}
     <td>
-        <p> Tämä on sinun myymäsi tuote </p>
+        <p> Tämä on sinun tuote </p>
     </td>
+    
     {% else %}
     <td>
       <form method="POST" action="{{ url_for('product_buy', product_id=product.id) }}">
