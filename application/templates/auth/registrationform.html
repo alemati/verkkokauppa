@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<form method="POST" action="{{ url_for('auth_registration') }}">
+  <table>
+    <tr>
+      <td >
+        <strong>{{ form.name.label }}</strong>
+      </td>
+      <td>
+        {{ form.name(class_='form-control') }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.name.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+    </tr>
+    <tr>
+      <td>
+        <strong>{{ form.username.label }}</strong>
+      </td>
+      <td>
+        {{ form.username(class_='form-control') }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.username.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+    </tr>
+    <tr>
+      <td>
+        <strong>{{ form.password.label }}</strong>
+      </td>
+      <td>
+        {{ form.password(class_='form-control') }}
+      </td>
+      <td>
+        <ul>
+          {% for error in form.password.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="submit" class="btn btn-primary" value="Register"/>
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

@@ -8,14 +8,19 @@ class Product(db.Model):
     onupdate=db.func.current_timestamp())
 
     name = db.Column(db.String(144), nullable=False)
+    price = db.Column(db.Integer, nullable=True)
+    description = db.Column(db.String(2000), nullable=False)
     onSale = db.Column(db.Boolean, nullable=False)
-
     account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
                            nullable=False)
 
-    def __init__(self, name):
+    def __init__(self, name, price, description, onSale, account_id):
         self.name = name
-        self.onSale = False
+        self.price = price
+        self.description = description
+        self.onSale = onSale
+        self.account_id = account_id
+        
 
     # @staticmethod
     # def find_all_products_on_sale():

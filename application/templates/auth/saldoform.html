@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{{ error }}
+<form method="POST" action="{{ url_for('auth_saldo') }}">
+  <table>
+    <p>Jos haluat laitaa tilille lisää rahaa ostoksia varten se onnistuu tässä!</p>
+    <tr>
+      <td >
+        <strong>{{ form.maara.label }}</strong>
+      </td>
+      <td >
+        <strong>{{ form.maara }}</strong>
+      </td>
+    <tr>
+      <td colspan="2">
+        <input type="submit" class="btn btn-primary" value="add money"/>
+      </td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

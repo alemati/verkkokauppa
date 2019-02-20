@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<table>
+    {% for product in products %}
+    <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.onSale }}</td>
+        <td>{{ product.price }}</td>
+        {% if current_user.is_authenticated %}
+        {% if current_user.id == product.account_id %}
+
+        {% if product.onSale %}
+        <td>
+            <form method="POST" action="{{ url_for('product_set_offSale', product_id=product.id) }}">
+                <input type="submit" value="Poista myynnistä" />
+            </form>
+        </td>
+        {% else %}
+        <td>
+            <form method="POST" action="{{ url_for('product_set_onSale', product_id=product.id) }}">
+                <input type="submit" value="Laita myyntiin" />
+            </form>
+        </td>
+        {% endif %}
+        <td>
+            <form method="POST" action="{{ url_for('product_delete', product_id=product.id) }}">
+                <input type="submit" value="Poista tuote!" />
+            </form>
+        </td>
+        
+        {% endif %}
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

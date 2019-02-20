@@ -12,6 +12,7 @@ class User(db.Model):
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
+    saldo = db.Column(db.Integer, nullable=False)
 
     products = db.relationship("Product", backref='account', lazy=True)
 
@@ -19,12 +20,16 @@ class User(db.Model):
         self.name = name
         self.username = username
         self.password = password
+        self.saldo = 0
   
     def get_id(self):
         return self.id
 
     def is_active(self):
         return True
+
+    def get_saldo(self):
+        return self.saldo
 
     def is_anonymous(self):
         return False
