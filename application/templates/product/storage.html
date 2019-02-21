@@ -2,6 +2,11 @@
 
 {% block body %}
 <table>
+    <tr>
+        <th>Tuoteen nimi</th>
+        <th>Tuoteen tila (onko myynnissä?)</th>
+        <th>Hinta</th>
+    </tr>
     {% for product in products %}
     <tr>
         <td>{{ product.name }}</td>
@@ -28,7 +33,7 @@
                 <input type="submit" value="Poista tuote!" />
             </form>
         </td>
-        
+
         {% endif %}
         {% endif %}
     </tr>

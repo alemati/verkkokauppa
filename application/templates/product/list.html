@@ -2,7 +2,11 @@
 
 {% block body %}
 <table>
-
+    <tr>
+        <th>Tuoteen nimi</th>
+        <th>Tuoteen kuvaus</th>
+        <th>Myynti hinta</th>
+    </tr>
   {% for product in products %}
   <tr>
     <td>{{ product.name }}</td>
@@ -14,7 +18,7 @@
     {% if current_user.is_authenticated %}
     {% if current_user.id == product.account_id %}
     <td>
-        <p> Tämä on sinun tuote </p>
+        <p> Tämä on sinun tuote. Et voi osta sitä.</p>
     </td>
     
     {% else %}

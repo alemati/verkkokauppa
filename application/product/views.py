@@ -1,9 +1,11 @@
-from flask import render_template, request, redirect, url_for
-from flask_login import login_required, current_user
 
+from flask_login import login_required, current_user
+from flask import render_template, request, redirect, url_for
+from application.auth.models import User
 from application import app, db
 from flask import render_template, request
 from application.product.models import Product
+from application.purchase.models import Purchase
 from application.product.forms import ProductForm
 from application.auth.forms import LoginForm
 
@@ -17,7 +19,6 @@ def product_purchasable():
     
     return render_template("product/list.html", form = ProductForm(), 
                                 products = Product.query.all())
-
 
 @app.route("/product/new/")
 @login_required
@@ -80,6 +81,12 @@ def product_buy(product_id):
     after = saldo - Product.query.get(product_id).price
     if after >= 1:
         t = Product.query.get(product_id)
+        p = Purchase(t.name, t.price, t.description, t.account_id, current_user.id)
+        db.session().add(p)
+        db.session().commit()
+        lisa = Product.query.get(product_id).price
+        myyja = User.query.get(t.account_id)
+        myyja.saldo = myyja.saldo + lisa
         t.account_id = current_user.id
         t.price = 0
         t.onSale = False
@@ -97,3 +104,10 @@ def product_change(product_id):
         return render_template("product/saldoform.html", form = ProductForm(), product = Product.query.get(product_id))
 
 
+@app.route("/product/buylist", methods = ["GET"])
+def product_buylist():
+    return render_template("purchase/buyList.html", purchases = Purchase.query.filter_by(buyer_account_id=current_user.id).all())
+
+@app.route("/purchase/sell", methods = ["GET"])
+def product_selllist():
+    return render_template("purchase/sellList.html", purchases = Purchase.query.filter_by(seller_account_id=current_user.id).all())

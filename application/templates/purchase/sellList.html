@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<p>Alla on kaikki sinun myynnit</p>
+<table>
+    <tr>
+        <th>Tuoteen nimi</th>
+        <th>Tuoteen kuvaus</th>
+        <th>Myynti hinta</th>
+        <th>Ostosaika</th>
+    </tr>
+    {% for purchase in purchases %}
+    <tr>
+        <td>{{ purchase.name }}</td>
+
+        <td>{{ purchase.description }}</td>
+
+        <td>{{ purchase.price }}</td>
+
+        <td>{{ purchase.date_created }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

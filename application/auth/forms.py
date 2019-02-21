@@ -19,5 +19,5 @@ class RegistrationForm(FlaskForm):
 class SaldoForm(FlaskForm):
     maara = IntegerField("Maara", [validators.NumberRange(min=0, max=1000)])
 
-    class Meta:
+    class Meta: 
         csrf = False

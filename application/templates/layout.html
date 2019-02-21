@@ -21,10 +21,10 @@
         {% if current_user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <p class="nav-link">Hei {{ current_user.name }}</p>
+            <p>Hei {{ current_user.name }} </p>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('auth_saldo') }}">Sinun saldo: {{ current_user.saldo }} </a>
+            <a class="nav-link" href="{{ url_for('auth_saldo') }}">Saldo: {{ current_user.saldo }} </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('product_index') }} ">Valikoima</a>
@@ -34,6 +34,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('product_userstorage') }} ">Minun varasto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('product_buylist') }} ">Minun ostokset</a> 
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('product_selllist') }} ">Minun myynnit</a>
           </li>
         </ul>
         <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
@@ -45,9 +51,6 @@
       </div>
     </div>
   </nav>
-
-
-
 
   {% block body %}
   <p>
