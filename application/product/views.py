@@ -11,7 +11,7 @@ from application.auth.forms import LoginForm
 
 @app.route("/product", methods=["GET"])
 def product_index(): 
-    return render_template("product/list.html", products = Product.query.filter_by(onSale=1).all())
+    return render_template("product/list.html", products = Product.query.filter_by(onSale='1').all())
 
 @app.route("/product/purchasable", methods=["GET"])
 @login_required
