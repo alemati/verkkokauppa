@@ -4,6 +4,7 @@ Tämä sovellus tehdään Helsingin yliopiston Tietokantasovellus -kurssin yhtey
 [User storyt](https://github.com/alemati/verkkokauppa/blob/master/documentation/UserStoryt.md)  
 [Tietokantakaavio](https://github.com/alemati/verkkokauppa/blob/master/documentation/Tietokantakaavio.md)  
 [Asennusohje ja käyttöohje](https://github.com/alemati/verkkokauppa/blob/master/documentation/Asennusohje%20ja%20k%C3%A4ytt%C3%B6ohje.md)  
+[Tietokantataulujen luontilauseet](https://github.com/alemati/verkkokauppa/blob/master/documentation/Tietokantataulujen%20luontilauseet.md)  
 ## Aihekuvaus 
 Työn aiheena on verkkokauppa. Verkkokauppa antaa käyttäjille mahdollisuuden ostaa ja myydä tuotteita. Verkkokaupan käyttäjät voivat myös tarkista oman ostoshistorian, lisätä omalle tilille lisää rahaa ostoksia varten. 
 ### Toimintoja
