@@ -20,3 +20,6 @@ source venv/bin/activate
 ```
 python3 run.py
 ```
+6. käynnistyksen jälkeen voit käyttää sovellusta osoitteessa http://localhost:5000/  
+
+7. voit sammuttaa soveluksen painamalla ctrl+C
