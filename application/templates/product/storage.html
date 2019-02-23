@@ -1,7 +1,8 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<table>
+
+        
     <tr>
         <th>Tuoteen nimi</th>
         <th>Tuoteen tila (onko myynnissä?)</th>
@@ -12,6 +13,7 @@
         <td>{{ product.name }}</td>
         <td>{{ product.onSale }}</td>
         <td>{{ product.price }}</td>
+        
         {% if current_user.is_authenticated %}
         {% if current_user.id == product.account_id %}
 

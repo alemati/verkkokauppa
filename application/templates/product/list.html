@@ -10,10 +10,11 @@
   {% for product in products %}
   <tr>
     <td>{{ product.name }}</td>
-
+    
     <td>{{ product.description }}</td>
 
     <td>{{ product.price }}</td>
+    <!-- <div class="col-2"><td>{{ product.name }}</td></div> -->
 
     {% if current_user.is_authenticated %}
     {% if current_user.id == product.account_id %}

@@ -4,13 +4,18 @@
 <head>
   <meta charset="utf-8">
   <title>Verkkokauppa</title>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
+  <nav class="navbar navbar-dark navbar-expand-md bg-primary">
+    <!-- <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4"> -->
+    <!-- <nav class="navbar navbar-expand-md navbar-light bg-primary"> -->
+    <!-- <nav class="navbar navbar-expand-md navbar-light bg-primary" style="background-color: #ffffff;"> -->
+    <!-- class="navbar navbar-light" style="background-color: #e3f2fd;" -->
 
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
     <a class="navbar-brand" href="#">Verkkokauppa</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
       aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,32 +26,37 @@
         {% if current_user.is_authenticated %}
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <p>Hei {{ current_user.name }} </p>
+            <a class="nav-link" href="{{ url_for('index') }}" style="color: #ffffff;">Hei {{ current_user.name }} </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('auth_saldo') }}">Saldo: {{ current_user.saldo }} </a>
+            <a class="nav-link" href="{{ url_for('auth_saldo') }}" style="color: #ffffff;">Saldo: {{ current_user.saldo }} </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('product_index') }} ">Valikoima</a>
+            <a class="nav-link" href="{{ url_for('product_index') }} " style="color: #ffffff;">Valikoima</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('product_form') }} ">Lisää tuote</a>
+            <a class="nav-link" href="{{ url_for('product_form') }} " style="color: #ffffff;">Lisää tuote</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('product_userstorage') }} ">Minun varasto</a>
+            <a class="nav-link" href="{{ url_for('product_userstorage') }} " style="color: #ffffff;">Minun varasto</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('product_buylist') }} ">Minun ostokset</a> 
+            <a class="nav-link" href="{{ url_for('product_buylist') }}" style="color: #ffffff;">Minun ostokset</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('product_selllist') }} ">Minun myynnit</a>
+            <a class="nav-link" href="{{ url_for('product_selllist') }} " style="color: #ffffff;">Minun myynnit</a>
           </li>
         </ul>
-        <a href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+        <a class="btn btn-outline-light" href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
         {% else %}
-        <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
-        <p>-_-_-_-_-</p>
-        <a href="{{ url_for('auth_registration') }}">Rekisteröidy</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth_login') }}" style="color: #ffffff;">Kirjaudu<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth_registration') }}" style="color: #ffffff;">Rekisteröidy<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
         {% endif %}
       </div>
     </div>

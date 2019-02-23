@@ -1,12 +1,14 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{{ error }}
+{% if error %}
+<div class="alert alert-danger" role="alert">{{error}}</div>
+{% endif %}
 <form method="POST" action="{{ url_for('auth_registration') }}">
   <table>
     <tr>
       <td >
-        <strong>{{ form.name.label }}</strong>
+        <p>{{ form.name.label }}</p>
       </td>
       <td>
         {{ form.name(class_='form-control') }}
@@ -14,13 +16,13 @@
       <td>
         <ul>
           {% for error in form.name.errors %}
-          <li>{{ error }}</li>
+          <li><div class="alert alert-warning" role="alert">{{ error }}</div></li>
           {% endfor %}
         </ul>
     </tr>
     <tr>
       <td>
-        <strong>{{ form.username.label }}</strong>
+        <p>{{ form.username.label }}</p>
       </td>
       <td>
         {{ form.username(class_='form-control') }}
@@ -28,13 +30,13 @@
       <td>
         <ul>
           {% for error in form.username.errors %}
-          <li>{{ error }}</li>
+          <li><div class="alert alert-warning" role="alert">{{ error }}</div></li>
           {% endfor %}
         </ul>
     </tr>
     <tr>
       <td>
-        <strong>{{ form.password.label }}</strong>
+        <p>{{ form.password.label }}</p>
       </td>
       <td>
         {{ form.password(class_='form-control') }}
@@ -42,13 +44,13 @@
       <td>
         <ul>
           {% for error in form.password.errors %}
-          <li>{{ error }}</li>
+          <li><div class="alert alert-warning" role="alert">{{ error }}</div></li>
           {% endfor %}
         </ul>
     </tr>
     <tr>
       <td colspan="2">
-        <input type="submit" class="btn btn-primary" value="Register"/>
+        <input type="submit" class="btn btn-outline-success my-2 my-sm-0" value="Rekisteröidy"/>
       </td>
     </tr>
   </table>
