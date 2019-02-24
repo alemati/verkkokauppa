@@ -1,11 +1,18 @@
 {% extends "layout.html" %}
+<style>
+    .modal-backdrop {
+        z-index: -1;
+    }
+</style>
 
 {% block body %}
+
+
 {% if error %}
 <div class="alert alert-success" role="alert">{{error}}</div>
 {% endif %}
 
-<table style="width:100%">  
+<table style="width:100%">
     <tr>
         <th>Tuoteen nimi</th>
         <th>Tuoteen tila (onko myynnissä?)</th>
@@ -16,15 +23,15 @@
         <td>{{ product.name }}</td>
         <td>{{ product.onSale }}</td>
         <td>{{ product.price }}</td>
-        
+
         {% if current_user.is_authenticated %}
         {% if current_user.id == product.account_id %}
 
         {% if product.onSale %}
         <td>
-            <form  method="POST" action="{{ url_for('product_set_offSale', product_id=product.id) }}">
+            <form method="POST" action="{{ url_for('product_set_offSale', product_id=product.id) }}">
                 <input class="btn btn-outline-primary" type="submit" value="Poista myynnistä" />
-            </form> 
+            </form>
         </td>
         {% else %}
         <td>
@@ -35,8 +42,14 @@
         {% endif %}
         <td>
             <form method="POST" action="{{ url_for('product_delete', product_id=product.id) }}">
-                <input class="btn btn-outline-danger" type="submit" value="Poista tuote!" />
+                <input class="btn btn-outline-danger" type="submit" value="Poista tuote" />
             </form>
+        </td>
+        <td>
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeModal"
+                data-whatever="{{ product.name }}" data-hinta="{{ product.price }}"
+                data-description="{{ product.description }}" data-productid="{{ product.id }}">Tiedot</button>
         </td>
 
         {% endif %}
@@ -44,4 +57,66 @@
     </tr>
     {% endfor %}
 </table>
+
+
+
+
+<div class="modal fade" id="changeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ url_for('product_change') }}">
+                    <div class="form-group">
+                        <label for="nimi" class="col-form-label">Tuoteen nimi:</label>
+                        <input type="text" class="form-control" id="nimi" name="nimi">
+                    </div>
+                    <div class="form-group">
+                        <label for="kuvaus" class="col-form-label">Tuoteen kuvaus:</label>
+                        <textarea class="form-control" id="kuvaus" name="kuvaus"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="hinta" class="col-form-label">Tuoteen hinta:</label>
+                        <textarea class="form-control" id="hinta" name="hinta"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="productid" name="productid">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-primary">Tallenna muutokset</button> -->
+                        <input class="btn btn-outline-success" type="submit" value="Tallenna muutokset" />
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $('#changeModal').on('show.bs.modal', function (event) {
+
+        var button = $(event.relatedTarget)
+        var nimi = button.data('whatever')
+        var kuvaus = button.data('description')
+        var hinta = button.data('hinta')
+        var id = button.data('productid')
+        var modal = $(this)
+        modal.find('.modal-title').text(nimi)
+        modal.find('.modal-body #nimi').val(nimi)
+        modal.find('.modal-body #kuvaus').val(kuvaus)
+        modal.find('.modal-body #hinta').val(hinta)
+        modal.find('.modal-body #productid').val(id)
+    }).appendTo("body") 
+</script>
+
 {% endblock %}

@@ -103,12 +103,23 @@ def product_buy(product_id):
                                 error = "Tililläsi ei ole riittävästi rahaa")
 
 
-@app.route("/product/<product_id>/change", methods=["GET", "POST"])
+@app.route("/product/change", methods=["GET", "POST"])
 @login_required
-def product_change(product_id):
+def product_change():
     if request.method == "GET":
-        return render_template("product/saldoform.html", form = ProductForm(), product = Product.query.get(product_id))
-
+        return render_template("product/change.html", form = ProductForm(), product = Product.query.get(product_id))
+    
+    newName = request.form.get("nimi")
+    newDescription = request.form.get("kuvaus")
+    newPrice = request.form.get("hinta")
+    oldId = request.form.get("productid")
+    
+    p = Product.query.get(oldId)
+    p.name = newName
+    p.description = newDescription
+    p.price = newPrice
+    db.session().commit()
+    return redirect(url_for("product_userstorage"))
 
 @app.route("/product/buylist", methods = ["GET"])
 def product_buylist():
