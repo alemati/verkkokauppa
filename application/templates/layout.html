@@ -28,8 +28,12 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('index') }}" style="color: #ffffff;">Hei {{ current_user.name }} </a>
           </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth_saldo') }}" style="color: #ffffff;">Saldo:
+              {{ current_user.saldo }} </a>
+          </li> -->
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('auth_saldo') }}" style="color: #ffffff;">Saldo: {{ current_user.saldo }} </a>
+            <a class="nav-link" style="color: #ffffff;" data-toggle="modal" data-target="#exampleModal">Saldo: {{ current_user.saldo }} </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('product_index') }} " style="color: #ffffff;">Valikoima</a>
@@ -48,13 +52,48 @@
           </li>
         </ul>
         <a class="btn btn-outline-light" href="{{ url_for('auth_logout') }}">Kirjaudu ulos</a>
+
+        <!-- Modal starts-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sinun saldo on {{ current_user.saldo }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="POST" action="{{ url_for('auth_saldo') }}">
+                    <table>
+                      <p>Jos haluat lisätä tilille lisää rahaa se onnistu tämän lomakeen avulla.</p>
+                      <tr>
+                        Määrä: <input type="number" name="sum" id="sum" min="1" max="1000" step="1" required="required"/>
+                      <tr>
+                        <td colspan="2">
+                          <input class="btn btn-outline-success" type="submit" value="Lisää rahaa"/>
+                        </td>
+                      </tr>
+                    </table>
+                  </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- Modal ends-->
+
+
         {% else %}
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('auth_login') }}" style="color: #ffffff;">Kirjaudu<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{ url_for('auth_login') }}" style="color: #ffffff;">Kirjaudu<span
+                class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('auth_registration') }}" style="color: #ffffff;">Rekisteröidy<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{{ url_for('auth_registration') }}" style="color: #ffffff;">Rekisteröidy<span
+                class="sr-only">(current)</span></a>
           </li>
         </ul>
         {% endif %}

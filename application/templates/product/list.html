@@ -1,16 +1,19 @@
 {% extends "layout.html" %}
 
 {% block body %}
+{% if viesti %}
+<div class="alert alert-warning" role="alert">{{viesti}}</div>
+{% endif %}
 <table>
-    <tr>
-        <th>Tuoteen nimi</th>
-        <th>Tuoteen kuvaus</th>
-        <th>Myynti hinta</th>
-    </tr>
+  <tr>
+    <th>Tuoteen nimi</th>
+    <th>Tuoteen kuvaus</th>
+    <th>Myynti hinta</th>
+  </tr>
   {% for product in products %}
   <tr>
     <td>{{ product.name }}</td>
-    
+
     <td>{{ product.description }}</td>
 
     <td>{{ product.price }}</td>
@@ -19,18 +22,18 @@
     {% if current_user.is_authenticated %}
     {% if current_user.id == product.account_id %}
     <td>
-        <p> Tämä on sinun tuote. Et voi osta sitä.</p>
+      <p> Tämä on sinun tuote. Et voi osta sitä.</p>
     </td>
-    
+
     {% else %}
     <td>
       <form method="POST" action="{{ url_for('product_buy', product_id=product.id) }}">
-        <input type="submit" value="Osta!" />
+        <input class="btn btn-outline-success" type="submit" value="Osta!" />
       </form>
     </td>
     {% endif %}
     {% endif %}
-    
+
 
   </tr>
 

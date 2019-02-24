@@ -1,8 +1,11 @@
 {% extends "layout.html" %}
 
 {% block body %}
+{% if error %}
+<div class="alert alert-success" role="alert">{{error}}</div>
+{% endif %}
 
-        
+<table style="width:100%">  
     <tr>
         <th>Tuoteen nimi</th>
         <th>Tuoteen tila (onko myynnissä?)</th>
@@ -19,20 +22,20 @@
 
         {% if product.onSale %}
         <td>
-            <form method="POST" action="{{ url_for('product_set_offSale', product_id=product.id) }}">
-                <input type="submit" value="Poista myynnistä" />
-            </form>
+            <form  method="POST" action="{{ url_for('product_set_offSale', product_id=product.id) }}">
+                <input class="btn btn-outline-primary" type="submit" value="Poista myynnistä" />
+            </form> 
         </td>
         {% else %}
         <td>
             <form method="POST" action="{{ url_for('product_set_onSale', product_id=product.id) }}">
-                <input type="submit" value="Laita myyntiin" />
+                <input class="btn btn-outline-primary" type="submit" value="Laita myyntiin" />
             </form>
         </td>
         {% endif %}
         <td>
             <form method="POST" action="{{ url_for('product_delete', product_id=product.id) }}">
-                <input type="submit" value="Poista tuote!" />
+                <input class="btn btn-outline-danger" type="submit" value="Poista tuote!" />
             </form>
         </td>
 

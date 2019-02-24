@@ -54,13 +54,16 @@ def auth_logout():
 def auth_saldo():
     if request.method == "GET":
         return render_template("auth/saldoform.html", form = SaldoForm())
-
-    form = SaldoForm(request.form)
+  
+    # form = SaldoForm(request.form)
+    modal =int(request.form.get("sum")) 
     cu = current_user
     user = User.query.filter_by(id=cu.id).first()
     if not user:
         return render_template("auth/saldoform.html", form = form,
                                 error = "Sorry, something gone wrong")
-    user.saldo = user.saldo + form.maara.data
+    # user.saldo = user.saldo + form.maara.data
+    user.saldo = user.saldo + modal
     db.session().commit()
-    return redirect(url_for("auth_saldo"))  
+    # return redirect(url_for("auth_saldo"))  
+    return redirect(url_for("product_index"))  

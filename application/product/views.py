@@ -11,7 +11,7 @@ from application.auth.forms import LoginForm
 
 @app.route("/product", methods=["GET"])
 def product_index(): 
-    return render_template("product/list.html", products = Product.query.filter_by(onSale='1').all())
+    return render_template("product/list.html", products = Product.query.filter_by(onSale='1').all(), error = None)
 
 @app.route("/product/purchasable", methods=["GET"])
 @login_required
@@ -44,7 +44,8 @@ def product_create():
 @login_required
 def product_userstorage():
     
-    return render_template("product/storage.html", form = ProductForm(), products = Product.query.filter_by(account_id=current_user.id).all())
+    return render_template("product/storage.html", form = ProductForm(), products = Product.query.filter_by(account_id=current_user.id).all(), 
+                           viesti = None)
 
 
 @app.route("/product/<product_id>/setonsale/", methods=["POST"])
@@ -57,7 +58,7 @@ def product_set_onSale(product_id):
     return redirect(url_for("product_userstorage"))
 
 @app.route("/product/<product_id>/setoffsale/", methods=["POST"])
-@login_required
+@login_required 
 def product_set_offSale(product_id):
 
     t = Product.query.get(product_id)
@@ -77,9 +78,10 @@ def product_delete(product_id):
 @app.route("/product/<product_id>/buy", methods=["POST"])
 @login_required
 def product_buy(product_id):
+  
     saldo = current_user.saldo
     after = saldo - Product.query.get(product_id).price
-    if after >= 1:
+    if after >= 0:
         t = Product.query.get(product_id)
         p = Purchase(t.name, t.price, t.description, t.account_id, current_user.id)
         db.session().add(p)
@@ -92,9 +94,13 @@ def product_buy(product_id):
         t.onSale = False
         current_user.saldo = after
         db.session().commit()
-        return redirect(url_for("product_userstorage"))
+        # return redirect(url_for("product_userstorage"))
+        return render_template("product/storage.html", form = ProductForm(), products = Product.query.filter_by(account_id=current_user.id).all(), 
+                                viesti = "Osto onnistui") 
     else:
-        return redirect(url_for("product_index"))
+        # return redirect(url_for("product_index"))
+        return render_template("product/list.html", products = Product.query.filter_by(onSale='1').all(),
+                                error = "Tililläsi ei ole riittävästi rahaa")
 
 
 @app.route("/product/<product_id>/change", methods=["GET", "POST"])
