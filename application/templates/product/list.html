@@ -1,8 +1,11 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{% if viesti %}
-<div class="alert alert-warning" role="alert">{{viesti}}</div>
+{% if viestiKyl %}
+<div class="alert alert-success" role="alert">{{ viestiKyl }}</div>
+{% endif %}
+{% if viestiEi %}
+<div class="alert alert-warning" role="alert">{{ viestiEi }}</div>
 {% endif %}
 <table>
   <tr>

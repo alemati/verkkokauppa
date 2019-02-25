@@ -41,15 +41,15 @@
         </td>
         {% endif %}
         <td>
-            <form method="POST" action="{{ url_for('product_delete', product_id=product.id) }}">
-                <input class="btn btn-outline-danger" type="submit" value="Poista tuote" />
-            </form>
-        </td>
-        <td>
 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeModal"
                 data-whatever="{{ product.name }}" data-hinta="{{ product.price }}"
                 data-description="{{ product.description }}" data-productid="{{ product.id }}">Tiedot</button>
+        </td>
+        <td>
+            <form method="POST" action="{{ url_for('product_delete', product_id=product.id) }}">
+                <input class="btn btn-outline-danger" type="submit" value="Poista tuote" />
+            </form>
         </td>
 
         {% endif %}
@@ -75,22 +75,23 @@
                 <form method="POST" action="{{ url_for('product_change') }}">
                     <div class="form-group">
                         <label for="nimi" class="col-form-label">Tuoteen nimi:</label>
-                        <input type="text" class="form-control" id="nimi" name="nimi">
+                        <input type="text" class="form-control" required="required" id="nimi" name="nimi">
                     </div>
                     <div class="form-group">
                         <label for="kuvaus" class="col-form-label">Tuoteen kuvaus:</label>
-                        <textarea class="form-control" id="kuvaus" name="kuvaus"></textarea>
+                        <textarea class="form-control" required="required" id="kuvaus" name="kuvaus"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="hinta" class="col-form-label">Tuoteen hinta:</label>
-                        <textarea class="form-control" id="hinta" name="hinta"></textarea>
+                        <!-- <textarea type="number" min="1" max="1000" step="1" required="required" class="form-control" id="hinta" name="hinta"></textarea> -->
+                        <input type="number" name="hinta" id="hinta" min="1" max="1000" step="1" required="required" class="form-control" />
                     </div>
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="productid" name="productid">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <!-- <button type="button" class="btn btn-primary">Tallenna muutokset</button> -->
+                        
                         <input class="btn btn-outline-success" type="submit" value="Tallenna muutokset" />
                     </div>
                 </form>
@@ -100,11 +101,8 @@
     </div>
 </div>
 
-
-
 <script>
     $('#changeModal').on('show.bs.modal', function (event) {
-
         var button = $(event.relatedTarget)
         var nimi = button.data('whatever')
         var kuvaus = button.data('description')

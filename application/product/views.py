@@ -11,7 +11,7 @@ from application.auth.forms import LoginForm
 
 @app.route("/product", methods=["GET"])
 def product_index(): 
-    return render_template("product/list.html", products = Product.query.filter_by(onSale='1').all(), error = None)
+    return render_template("product/list.html", products = Product.query.filter_by(onSale='1').all(), viestiEi = None, viestiKyl = None)
 
 @app.route("/product/purchasable", methods=["GET"])
 @login_required
@@ -38,7 +38,7 @@ def product_create():
     db.session().add(p)
     db.session().commit()
   
-    return redirect(url_for("product_index"))
+    return redirect(url_for("product_userstorage"))
 
 @app.route("/product/userstorage", methods=["GET"])
 @login_required
@@ -95,12 +95,12 @@ def product_buy(product_id):
         current_user.saldo = after
         db.session().commit()
         # return redirect(url_for("product_userstorage"))
-        return render_template("product/storage.html", form = ProductForm(), products = Product.query.filter_by(account_id=current_user.id).all(), 
-                                viesti = "Osto onnistui") 
+        return render_template("product/list.html", form = ProductForm(), products = Product.query.filter_by(onSale='1').all(), 
+                                viestiKyl = "Tuote on ostettu ja lisätty sinun varastoon" , viestiEi = None) 
     else:
         # return redirect(url_for("product_index"))
         return render_template("product/list.html", products = Product.query.filter_by(onSale='1').all(),
-                                error = "Tililläsi ei ole riittävästi rahaa")
+                                viestiEi = "Tililläsi ei ole riittävästi rahaa", viestiKyl = None)
 
 
 @app.route("/product/change", methods=["GET", "POST"])
