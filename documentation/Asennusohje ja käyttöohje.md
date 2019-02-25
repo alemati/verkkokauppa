@@ -16,9 +16,22 @@ python3 -m venv venv
 ```
 source venv/bin/activate
 ```
+4. lataa seuraavat riippuvuudet
+```
+source venv/bin/activate
+```
 5. käynnistä sovellus
 ```
-python3 run.py
+pip install flask
+```
+```
+pip install flask-sqlalchemy
+```
+```
+pip install flask-wtf
+```
+```
+pip install flask_login
 ```
 6. käynnistyksen jälkeen voit käyttää sovellusta osoitteessa http://localhost:5000/  
 
