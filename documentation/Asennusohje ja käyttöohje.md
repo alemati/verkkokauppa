@@ -16,11 +16,7 @@ python3 -m venv venv
 ```
 source venv/bin/activate
 ```
-4. lataa seuraavat riippuvuudet
-```
-source venv/bin/activate
-```
-5. käynnistä sovellus
+4. lataa seuraavat riippuvuudet  
 ```
 pip install flask
 ```
@@ -32,6 +28,10 @@ pip install flask-wtf
 ```
 ```
 pip install flask_login
+```
+5. käynnistä sovellus  
+```
+source venv/bin/activate
 ```
 6. käynnistyksen jälkeen voit käyttää sovellusta osoitteessa http://localhost:5000/  
 
