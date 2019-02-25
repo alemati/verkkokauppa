@@ -73,7 +73,7 @@ def product_delete(product_id):
     t = Product.query.get(product_id)
     db.session().delete(t)
     db.session().commit()
-    return redirect(url_for("product_index"))
+    return redirect(url_for("product_userstorage"))
 
 @app.route("/product/<product_id>/buy", methods=["POST"])
 @login_required
