@@ -13,13 +13,6 @@ from application.auth.forms import LoginForm
 def product_index(): 
     return render_template("product/list.html", products = Product.query.filter_by(onSale='1').all(), viestiEi = None, viestiKyl = None)
 
-@app.route("/product/purchasable", methods=["GET"])
-@login_required
-def product_purchasable():
-    
-    return render_template("product/list.html", form = ProductForm(), 
-                                products = Product.query.all())
-
 @app.route("/product/new/")
 @login_required
 def product_form():
@@ -33,9 +26,9 @@ def product_create():
     if not form.validate():
         return render_template("product/new.html", form = form)
 
-    p = Product(form.name.data, form.price.data, form.description.data, form.onSale.data, current_user.id)
+    newProduct = Product(form.name.data, form.price.data, form.description.data, form.onSale.data, current_user.id)
     
-    db.session().add(p)
+    db.session().add(newProduct)
     db.session().commit()
   
     return redirect(url_for("product_userstorage"))
@@ -52,8 +45,8 @@ def product_userstorage():
 @login_required
 def product_set_onSale(product_id):
 
-    t = Product.query.get(product_id)
-    t.onSale = True
+    product = Product.query.get(product_id)
+    product.onSale = True
     db.session().commit()
     return redirect(url_for("product_userstorage"))
 
@@ -61,8 +54,8 @@ def product_set_onSale(product_id):
 @login_required 
 def product_set_offSale(product_id):
 
-    t = Product.query.get(product_id)
-    t.onSale = False
+    product = Product.query.get(product_id)
+    product.onSale = False
     db.session().commit()
     return redirect(url_for("product_userstorage"))
 
@@ -70,35 +63,36 @@ def product_set_offSale(product_id):
 @login_required
 def product_delete(product_id):
 
-    t = Product.query.get(product_id)
-    db.session().delete(t)
+    product = Product.query.get(product_id)
+    db.session().delete(product)
     db.session().commit()
     return redirect(url_for("product_userstorage"))
 
 @app.route("/product/<product_id>/buy", methods=["POST"])
 @login_required
 def product_buy(product_id):
-  
     saldo = current_user.saldo
-    after = saldo - Product.query.get(product_id).price
-    if after >= 0:
-        t = Product.query.get(product_id)
-        p = Purchase(t.name, t.price, t.description, t.account_id, current_user.id)
-        db.session().add(p)
+    afterPurchase = saldo - Product.query.get(product_id).price
+    if afterPurchase >= 0:
+        product = Product.query.get(product_id)
+        purchase = Purchase(product.name, product.price, product.description, product.account_id, current_user.id)
+        db.session().add(purchase)
         db.session().commit()
-        lisa = Product.query.get(product_id).price
-        myyja = User.query.get(t.account_id)
-        myyja.saldo = myyja.saldo + lisa
-        t.account_id = current_user.id
-        t.price = 0
-        t.onSale = False
-        current_user.saldo = after
+
+        productPrice = Product.query.get(product_id).price
+        myyja = User.query.get(product.account_id)
+        myyja.saldo = myyja.saldo + productPrice
+
+        current_user.saldo = afterPurchase
+
+        product.account_id = current_user.id
+        product.price = 0
+        product.onSale = False
+        
         db.session().commit()
-        # return redirect(url_for("product_userstorage"))
         return render_template("product/list.html", form = ProductForm(), products = Product.query.filter_by(onSale='1').all(), 
                                 viestiKyl = "Tuote on ostettu ja lisätty sinun varastoon" , viestiEi = None) 
     else:
-        # return redirect(url_for("product_index"))
         return render_template("product/list.html", products = Product.query.filter_by(onSale='1').all(),
                                 viestiEi = "Tililläsi ei ole riittävästi rahaa", viestiKyl = None)
 
@@ -114,17 +108,9 @@ def product_change():
     newPrice = request.form.get("hinta")
     oldId = request.form.get("productid")
     
-    p = Product.query.get(oldId)
-    p.name = newName
-    p.description = newDescription
-    p.price = newPrice
+    product = Product.query.get(oldId)
+    product.name = newName
+    product.description = newDescription
+    product.price = newPrice
     db.session().commit()
     return redirect(url_for("product_userstorage"))
-
-@app.route("/product/buylist", methods = ["GET"])
-def product_buylist():
-    return render_template("purchase/buyList.html", purchases = Purchase.query.filter_by(buyer_account_id=current_user.id).all())
-
-@app.route("/purchase/sell", methods = ["GET"])
-def product_selllist():
-    return render_template("purchase/sellList.html", purchases = Purchase.query.filter_by(seller_account_id=current_user.id).all())

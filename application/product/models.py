@@ -22,13 +22,3 @@ class Product(db.Model):
         self.account_id = account_id
         
 
-    # @staticmethod
-    # def find_all_products_on_sale():
-    #     stmt = text("SELECT Product.id, Product.name, Product.onSale FROM Product WHERE Product.onSale = 'True'")
-    #     res = db.engine.execute(stmt)
-  
-    #     response = []
-    #     for row in res:
-    #         response.append({"id":row[0], "name":row[1]})
-
-    #     return response

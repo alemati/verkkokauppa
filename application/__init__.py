@@ -18,6 +18,9 @@ from application import views
 from application.product import models
 from application.product import views
 
+from application.purchase import models
+from application.purchase import views
+
 from application.auth import models
 from application.auth import views
 

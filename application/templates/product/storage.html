@@ -44,7 +44,7 @@
 
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#changeModal"
                 data-whatever="{{ product.name }}" data-hinta="{{ product.price }}"
-                data-description="{{ product.description }}" data-productid="{{ product.id }}">Tiedot</button>
+                data-description="{{ product.description }}" data-productid="{{ product.id }}">Muokkaa tiedot</button>
         </td>
         <td>
             <form method="POST" action="{{ url_for('product_delete', product_id=product.id) }}">
@@ -83,14 +83,14 @@
                     </div>
                     <div class="form-group">
                         <label for="hinta" class="col-form-label">Tuoteen hinta:</label>
-                        <!-- <textarea type="number" min="1" max="1000" step="1" required="required" class="form-control" id="hinta" name="hinta"></textarea> -->
+                        
                         <input type="number" name="hinta" id="hinta" min="1" max="1000" step="1" required="required" class="form-control" />
                     </div>
                     <div class="form-group">
                         <input type="hidden" class="form-control" id="productid" name="productid">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sulje</button>
                         
                         <input class="btn btn-outline-success" type="submit" value="Tallenna muutokset" />
                     </div>
