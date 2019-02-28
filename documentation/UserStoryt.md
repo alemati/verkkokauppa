@@ -43,3 +43,9 @@ product = Product.query.get(oldId)
     product.price = newPrice
     db.session().commit()
 ```  
+* Käyttäjänä voin poista oman tuoteen   
+```  
+product = Product.query.get(product_id)
+    db.session().delete(product)
+    db.session().commit()
+```  
