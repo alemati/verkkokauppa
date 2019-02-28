@@ -1,5 +1,5 @@
   
-<img src="https://github.com/alemati/verkkokauppa/blob/master/documentation/databaseLast.png" width="500"> 
+<img src="https://github.com/alemati/verkkokauppa/blob/master/documentation/databaseLast.png" width="300"> 
 
 Kaavio oli tehty sivulla https://yuml.me/ (alla on koodi)  
 [Customer|(pk) id : Integer; username : varchar(20); password: varchar(20); saldo : Integer], 
